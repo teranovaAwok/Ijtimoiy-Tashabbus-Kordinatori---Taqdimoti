@@ -29,6 +29,176 @@
     line-height: 1.6;
   }
   
+  /* 🎬 INTRO SCREEN */
+  .intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4c1d95 0%, #6b21a8 50%, #7c3aed 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+    overflow: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+  
+  .intro-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  /* Animated background circles */
+  .intro-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: pulseCircle 3s ease-out infinite;
+  }
+  
+  .intro-circle:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    animation-delay: 0s;
+  }
+  
+  .intro-circle:nth-child(2) {
+    width: 500px;
+    height: 500px;
+    animation-delay: 0.5s;
+  }
+  
+  .intro-circle:nth-child(3) {
+    width: 700px;
+    height: 700px;
+    animation-delay: 1s;
+  }
+  
+  @keyframes pulseCircle {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+  
+  /* Logo container */
+  .intro-logo-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .intro-image-wrapper {
+    position: relative;
+    display: inline-block;
+    animation: imageFloat 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+  
+  .intro-image-wrapper:hover {
+    transform: scale(1.05);
+  }
+  
+  @keyframes imageFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .intro-image {
+    max-width: 600px;
+    width: 90%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: imageGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes imageGlow {
+    0%, 100% {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(255, 255, 255, 0.3);
+    }
+  }
+  
+  .intro-click-hint {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin-top: 30px;
+    animation: bounce 2s infinite, fadeInUp 1s ease-out 1s both;
+    font-weight: 500;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  /* Decorative elements */
+  .intro-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .intro-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: floatDot 4s ease-in-out infinite;
+  }
+  
+  @keyframes floatDot {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+  }
+  
   /* 🌐 GRID FON */
   body::before {
     content: '';
@@ -223,7 +393,7 @@
     background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.3));
   }
   
-  /*  Sparkle */
+  /* ✨ Sparkle */
   .sparkle {
     position: absolute;
     width: 20px;
@@ -804,7 +974,7 @@
     z-index: 2;
   }
   
-  /*  CTA */
+  /* 🎯 CTA */
   .cta-section {
     text-align: center;
     padding: 100px 8%;
@@ -836,7 +1006,7 @@
     box-shadow: 0 15px 40px rgba(147,51,234,0.2);
   }
   
-  /*  FOOTER */
+  /* 🦶 FOOTER */
   footer {
     background: var(--dark);
     color: white;
@@ -903,6 +1073,14 @@
     }
     
     section { padding: 60px 5%; }
+    
+    .intro-circle {
+      display: none;
+    }
+    
+    .intro-image {
+      max-width: 90%;
+    }
   }
   
   /* 🎬 SCROLL ANIMATIONS */
@@ -919,6 +1097,22 @@
 </style>
 </head>
 <body>
+
+<!-- 🎬 INTRO SCREEN -->
+<div class="intro-screen" id="introScreen">
+  <div class="intro-circle"></div>
+  <div class="intro-circle"></div>
+  <div class="intro-circle"></div>
+  
+  <div class="intro-decoration" id="introDecoration"></div>
+  
+  <div class="intro-logo-container">
+    <div class="intro-image-wrapper">
+      <img src="kelajak-start.png" alt="Kelajak Markazi" class="intro-image">
+    </div>
+    <div class="intro-click-hint">Saytga kirish uchun rasm ustiga bosing ✨</div>
+  </div>
+</div>
 
 <!-- 🧭 NAVBAR -->
 <nav>
@@ -954,7 +1148,7 @@
       
       <div class="badge badge-1">
         <div class="badge-dot"></div>
-         8-"A" sinf
+        🎓 8-"A" sinf
       </div>
       <div class="badge badge-2">
         <div class="badge-dot"></div>
@@ -1007,7 +1201,7 @@
   </div>
 </section>
 
-<!--  PROBLEMS -->
+<!-- 🚩 PROBLEMS -->
 <section id="problems">
   <div class="section-header fade-in">
     <div class="section-tag">🚩 Nega aynan ushbu loyiha?</div>
@@ -1139,7 +1333,7 @@
         <div class="timeline-items">
           <div class="timeline-item-inner"><span class="icon">🫶</span> "Do'stlik ko'prigi" dasturi</div>
           <div class="timeline-item-inner"><span class="icon">💙</span> "Bir yaxshi ish" tashabbusi</div>
-          <div class="timeline-item-inner"><span class="icon">👨‍‍👧</span> Ota-onalar bilan raqamli muloqot</div>
+          <div class="timeline-item-inner"><span class="icon">👨‍👩‍👧</span> Ota-onalar bilan raqamli muloqot</div>
         </div>
       </div>
     </div>
@@ -1147,7 +1341,7 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <div class="timeline-badge"> 3-bosqich • Mart–Aprel</div>
+        <div class="timeline-badge">🟠 3-bosqich • Mart–Aprel</div>
         <h3>"BIRGA - onlayn hurmat va hamjihatlik" ijtimoiy hackathoni</h3>
         <p>Maktab hayotidagi ijtimoiy muammoga yechim yaratish — asosiy vazifa kod yozish emas.</p>
         <div class="timeline-items">
@@ -1217,6 +1411,40 @@
 </footer>
 
 <script>
+  // 🎬 INTRO SCREEN FUNCTIONALITY
+  const introScreen = document.getElementById('introScreen');
+  const introDecoration = document.getElementById('introDecoration');
+  
+  // Create floating dots
+  for (let i = 0; i < 20; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'intro-dot';
+    dot.style.left = Math.random() * 100 + '%';
+    dot.style.top = Math.random() * 100 + '%';
+    dot.style.animationDelay = Math.random() * 4 + 's';
+    dot.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    introDecoration.appendChild(dot);
+  }
+  
+  // Click to enter main site
+  introScreen.addEventListener('click', () => {
+    introScreen.classList.add('hidden');
+    setTimeout(() => {
+      introScreen.style.display = 'none';
+    }, 800);
+  });
+  
+  // Auto-hide after 5 seconds (optional)
+  setTimeout(() => {
+    if (!introScreen.classList.contains('hidden')) {
+      introScreen.classList.add('hidden');
+      setTimeout(() => {
+        introScreen.style.display = 'none';
+      }, 800);
+    }
+  }, 5000);
+  
+  // 🖱️ 3D TILT EFFECT
   const photoCard = document.getElementById('photoCard');
   
   if (photoCard && window.innerWidth > 900) {
@@ -1237,6 +1465,7 @@
     });
   }
   
+  // 🎬 SCROLL ANIMATIONS
   const observerOptions = {
     threshold: 0.15,
     rootMargin: '0px 0px -50px 0px'
@@ -1254,6 +1483,7 @@
     observer.observe(el);
   });
   
+  // 🧭 SMOOTH SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1264,6 +1494,7 @@
     });
   });
   
+  // ⌨️ KEYBOARD NAVIGATION
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') {
       window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
