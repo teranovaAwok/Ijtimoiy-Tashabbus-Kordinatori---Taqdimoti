@@ -29,22 +29,18 @@
     line-height: 1.6;
   }
   
-  /* 🎬 INTRO SCREEN */
+  /* 🎬 INTRO SCREEN - TO'LIQ EKRAN RASM */
   .intro-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #4c1d95 0%, #6b21a8 50%, #7c3aed 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 9999;
     cursor: pointer;
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s;
+    background: #000;
   }
   
   .intro-screen.hidden {
@@ -53,150 +49,105 @@
     pointer-events: none;
   }
   
-  /* Animated background circles */
-  .intro-circle {
+  /* Rasm - butun ekranni egallaydi */
+  .intro-full-image {
     position: absolute;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    animation: pulseCircle 3s ease-out infinite;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    animation: introFadeIn 1.5s ease-out, introZoom 8s ease-out forwards;
+    filter: brightness(0.95);
   }
   
-  .intro-circle:nth-child(1) {
-    width: 300px;
-    height: 300px;
-    animation-delay: 0s;
-  }
-  
-  .intro-circle:nth-child(2) {
-    width: 500px;
-    height: 500px;
-    animation-delay: 0.5s;
-  }
-  
-  .intro-circle:nth-child(3) {
-    width: 700px;
-    height: 700px;
-    animation-delay: 1s;
-  }
-  
-  @keyframes pulseCircle {
-    0% {
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
-    50% {
+  @keyframes introFadeIn {
+    from {
+      opacity: 0;
       transform: scale(1.1);
-      opacity: 0.2;
     }
-    100% {
-      transform: scale(0.8);
-      opacity: 0.5;
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
   
-  /* Logo container */
-  .intro-logo-container {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    animation: fadeInUp 1s ease-out;
+  @keyframes introZoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+  
+  /* Overlay - rasm ustida qorong'u qatlam */
+  .intro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  /* Click hint - pastda */
+  .intro-click-hint {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 3;
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: fadeInUp 1s ease-out 1s both, pulseHint 2s ease-in-out infinite;
+    pointer-events: none;
   }
   
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateX(-50%) translateY(30px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
   }
   
-  .intro-image-wrapper {
-    position: relative;
+  @keyframes pulseHint {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+  }
+  
+  .intro-click-hint .arrow {
     display: inline-block;
-    animation: imageFloat 3s ease-in-out infinite;
-    transition: transform 0.3s ease;
+    margin-left: 8px;
+    animation: arrowBounce 1.5s ease-in-out infinite;
   }
   
-  .intro-image-wrapper:hover {
-    transform: scale(1.05);
-  }
-  
-  @keyframes imageFloat {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-  
-  .intro-image {
-    max-width: 600px;
-    width: 90%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: imageGlow 2s ease-in-out infinite;
-  }
-  
-  @keyframes imageGlow {
-    0%, 100% {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
-    }
-    50% {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(255, 255, 255, 0.3);
-    }
-  }
-  
-  .intro-click-hint {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1rem;
-    margin-top: 30px;
-    animation: bounce 2s infinite, fadeInUp 1s ease-out 1s both;
-    font-weight: 500;
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-  
-  /* Decorative elements */
-  .intro-decoration {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-  
-  .intro-dot {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: floatDot 4s ease-in-out infinite;
-  }
-  
-  @keyframes floatDot {
-    0%, 100% {
-      transform: translateY(0) translateX(0);
-      opacity: 0.3;
-    }
-    50% {
-      transform: translateY(-20px) translateX(10px);
-      opacity: 0.6;
-    }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
   }
   
   /* 🌐 GRID FON */
@@ -254,7 +205,6 @@
     to { opacity: 1; transform: translate(-50%, 0); }
   }
   
-  /* Kelajak Logosi */
   .kelajak-logo-container {
     display: flex;
     align-items: center;
@@ -327,7 +277,6 @@
     perspective: 1500px;
   }
   
-  /* 🖼️ 3D RASM CARD */
   .photo-card {
     position: relative;
     width: 420px;
@@ -393,7 +342,6 @@
     background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.3));
   }
   
-  /* ✨ Sparkle */
   .sparkle {
     position: absolute;
     width: 20px;
@@ -411,7 +359,6 @@
     50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
   }
   
-  /* 🏷️ FLOATING BADGES */
   .badge {
     position: absolute;
     background: white;
@@ -483,7 +430,6 @@
     animation: pulse 2s infinite;
   }
   
-  /* 🎨 HERO SARLAVHA */
   .hero-title {
     font-size: clamp(4rem, 8vw, 7rem);
     font-weight: 900;
@@ -583,7 +529,6 @@
     transform: translateY(-3px);
   }
   
-  /* 📊 STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -619,7 +564,6 @@
     margin-top: 8px;
   }
   
-  /* 🎯 SECTIONS */
   section {
     padding: 100px 8%;
     position: relative;
@@ -659,14 +603,13 @@
     margin: 0 auto;
   }
   
-  /* 🚩 PROBLEMS */
-  .problems-grid {
+  .problems-grid, .steps-grid, .role-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
   }
   
-  .problem-card {
+  .problem-card, .step-card, .role-card {
     background: white;
     padding: 35px 30px;
     border-radius: 24px;
@@ -676,7 +619,7 @@
     overflow: hidden;
   }
   
-  .problem-card::before {
+  .problem-card::before, .role-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -689,59 +632,31 @@
     transition: transform 0.4s;
   }
   
-  .problem-card:hover {
+  .problem-card:hover, .step-card:hover, .role-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 50px rgba(147,51,234,0.15);
     border-color: var(--purple);
   }
   
-  .problem-card:hover::before {
+  .problem-card:hover::before, .role-card:hover::after {
     transform: scaleX(1);
   }
   
-  .problem-icon {
+  .problem-icon, .step-icon {
     font-size: 3rem;
     margin-bottom: 15px;
     display: inline-block;
-    animation: bounce 2s infinite;
   }
   
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  .problem-card h3 {
+  .problem-card h3, .step-card h3, .role-card h3 {
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 10px;
   }
   
-  .problem-card p {
+  .problem-card p, .step-card p, .role-card p {
     color: var(--gray);
     font-size: 0.95rem;
-  }
-  
-  /* 🛠️ STEPS */
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    position: relative;
-  }
-  
-  .step-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    position: relative;
-    transition: all 0.4s;
-  }
-  
-  .step-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
   }
   
   .step-number {
@@ -761,23 +676,18 @@
     box-shadow: 0 10px 30px rgba(147,51,234,0.4);
   }
   
-  .step-icon {
-    font-size: 3rem;
-    margin: 15px 0;
+  .role-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(147,51,234,0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
   
-  .step-card h3 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  
-  .step-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-  }
-  
-  /* 📅 TIMELINE */
   .timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -876,68 +786,6 @@
     font-size: 1.3rem;
   }
   
-  /* 🤝 ROLE */
-  .role-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-  
-  .role-card {
-    background: white;
-    padding: 35px 30px;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    transition: all 0.4s;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .role-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--purple);
-    transform: scaleX(0);
-    transition: transform 0.4s;
-  }
-  
-  .role-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
-  }
-  
-  .role-card:hover::after {
-    transform: scaleX(1);
-  }
-  
-  .role-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(147,51,234,0.1);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-  
-  .role-card h3 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  
-  .role-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-  }
-  
-  /* 💬 QUOTE */
   .quote-section {
     background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
     border-radius: 30px;
@@ -974,7 +822,6 @@
     z-index: 2;
   }
   
-  /* 🎯 CTA */
   .cta-section {
     text-align: center;
     padding: 100px 8%;
@@ -1006,7 +853,6 @@
     box-shadow: 0 15px 40px rgba(147,51,234,0.2);
   }
   
-  /* 🦶 FOOTER */
   footer {
     background: var(--dark);
     color: white;
@@ -1036,7 +882,6 @@
     color: rgba(255,255,255,0.4);
   }
   
-  /* 📱 RESPONSIVE */
   @media (max-width: 900px) {
     .hero {
       flex-direction: column;
@@ -1074,16 +919,13 @@
     
     section { padding: 60px 5%; }
     
-    .intro-circle {
-      display: none;
-    }
-    
-    .intro-image {
-      max-width: 90%;
+    .intro-click-hint {
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      bottom: 40px;
     }
   }
   
-  /* 🎬 SCROLL ANIMATIONS */
   .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -1098,19 +940,12 @@
 </head>
 <body>
 
-<!-- 🎬 INTRO SCREEN -->
+<!-- 🎬 INTRO SCREEN - TO'LIQ EKRAN RASM -->
 <div class="intro-screen" id="introScreen">
-  <div class="intro-circle"></div>
-  <div class="intro-circle"></div>
-  <div class="intro-circle"></div>
-  
-  <div class="intro-decoration" id="introDecoration"></div>
-  
-  <div class="intro-logo-container">
-    <div class="intro-image-wrapper">
-      <img src="kelajak-start.png" alt="Kelajak Markazi" class="intro-image">
-    </div>
-    <div class="intro-click-hint">Saytga kirish uchun rasm ustiga bosing ✨</div>
+  <img src="kelajak-start.png" alt="Kelajak Markazi" class="intro-full-image" onerror="this.style.display='none'">
+  <div class="intro-overlay"></div>
+  <div class="intro-click-hint">
+    Saytga kirish uchun bosing <span class="arrow">→</span>
   </div>
 </div>
 
@@ -1152,7 +987,7 @@
       </div>
       <div class="badge badge-2">
         <div class="badge-dot"></div>
-        🏫 2-maktab
+         2-maktab
       </div>
       <div class="badge badge-3">
         <div class="badge-dot"></div>
@@ -1233,7 +1068,7 @@
   </div>
 </section>
 
-<!-- 💡 SOLUTION -->
+<!--  SOLUTION -->
 <section id="solution" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
     <div class="section-tag">💡 Yechim</div>
@@ -1272,7 +1107,7 @@
 <!-- 🧭 ROLE -->
 <section>
   <div class="section-header fade-in">
-    <div class="section-tag">🧭 Mening vazifam</div>
+    <div class="section-tag"> Mening vazifam</div>
     <h2>Koordinator sifatida <span class="purple">nima qilaman?</span></h2>
     <p class="section-subtitle">Mening vazifam — hamma ishni yolg'iz bajarish emas, balki tengdoshlarimning g'oyalarini birlashtirib, amalga oshirilishiga yordam berish.</p>
   </div>
@@ -1284,7 +1119,7 @@
       <p>Sinf vakillari orqali ochiq takliflar va umumiy ehtiyojlarni to'playman.</p>
     </div>
     <div class="role-card fade-in">
-      <div class="role-icon">👥</div>
+      <div class="role-icon"></div>
       <h3>Faol o'quvchilarni birlashtiraman</h3>
       <p>8–12 nafar ko'ngilli bilan kichik guruhlarda vazifalarni taqsimlayman.</p>
     </div>
@@ -1304,7 +1139,7 @@
 <!-- 📅 TIMELINE -->
 <section id="timeline" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
-    <div class="section-tag">🗓️ 1 yillik reja</div>
+    <div class="section-tag">️ 1 yillik reja</div>
     <h2>To'rt <span class="purple">bosqichli</span> yo'l xaritasi</h2>
     <p class="section-subtitle">Sentabrdan iyungacha — har bir chorakda aniq maqsad va natija.</p>
   </div>
@@ -1327,13 +1162,13 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <div class="timeline-badge">🟡 2-bosqich • Dekabr–Fevral</div>
+        <div class="timeline-badge"> 2-bosqich • Dekabr–Fevral</div>
         <h3>Do'stlik ko'prigi va amaliy yordam</h3>
         <p>O'quvchilar orasidagi hamjihatlikni kundalik hayotda mustahkamlaymiz.</p>
         <div class="timeline-items">
           <div class="timeline-item-inner"><span class="icon">🫶</span> "Do'stlik ko'prigi" dasturi</div>
           <div class="timeline-item-inner"><span class="icon">💙</span> "Bir yaxshi ish" tashabbusi</div>
-          <div class="timeline-item-inner"><span class="icon">👨‍👩‍👧</span> Ota-onalar bilan raqamli muloqot</div>
+          <div class="timeline-item-inner"><span class="icon">👨‍👩👧</span> Ota-onalar bilan raqamli muloqot</div>
         </div>
       </div>
     </div>
@@ -1359,9 +1194,9 @@
         <h3>Natija, festival va davomiylik</h3>
         <p>Yil yakunida amalga oshgan ishlarni ko'rsatamiz, o'quvchilarga so'z beramiz.</p>
         <div class="timeline-items">
-          <div class="timeline-item-inner"><span class="icon">🎪</span> "BIRGA" ijtimoiy festival</div>
+          <div class="timeline-item-inner"><span class="icon"></span> "BIRGA" ijtimoiy festival</div>
           <div class="timeline-item-inner"><span class="icon">🏅</span> Tashabbuskorlarni e'tirof etish</div>
-          <div class="timeline-item-inner"><span class="icon">📋</span> Natijani qayta o'lchash</div>
+          <div class="timeline-item-inner"><span class="icon"></span> Natijani qayta o'lchash</div>
           <div class="timeline-item-inner"><span class="icon">🌱</span> Keyingi yilga ko'prik</div>
         </div>
       </div>
@@ -1375,7 +1210,7 @@
   <p class="quote-author">— Sadullayev Arslon, Ijtimoiy Tashabbus Koordinatori nomzodi</p>
 </div>
 
-<!-- 🎯 CTA -->
+<!--  CTA -->
 <section class="cta-section" id="contact">
   <div class="section-header fade-in">
     <div class="section-tag">🌍 Birgalikda kuchliroq</div>
@@ -1413,20 +1248,8 @@
 <script>
   // 🎬 INTRO SCREEN FUNCTIONALITY
   const introScreen = document.getElementById('introScreen');
-  const introDecoration = document.getElementById('introDecoration');
   
-  // Create floating dots
-  for (let i = 0; i < 20; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'intro-dot';
-    dot.style.left = Math.random() * 100 + '%';
-    dot.style.top = Math.random() * 100 + '%';
-    dot.style.animationDelay = Math.random() * 4 + 's';
-    dot.style.animationDuration = (Math.random() * 3 + 3) + 's';
-    introDecoration.appendChild(dot);
-  }
-  
-  // Click to enter main site
+  // Rasm yoki butun intro ustiga bosilganda sayt ochiladi
   introScreen.addEventListener('click', () => {
     introScreen.classList.add('hidden');
     setTimeout(() => {
@@ -1434,7 +1257,7 @@
     }, 800);
   });
   
-  // Auto-hide after 5 seconds (optional)
+  // 7 soniyadan keyin avtomatik yo'qoladi
   setTimeout(() => {
     if (!introScreen.classList.contains('hidden')) {
       introScreen.classList.add('hidden');
@@ -1442,7 +1265,7 @@
         introScreen.style.display = 'none';
       }, 800);
     }
-  }, 5000);
+  }, 7000);
   
   // 🖱️ 3D TILT EFFECT
   const photoCard = document.getElementById('photoCard');
