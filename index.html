@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ijtimoiy Tashabbus| Sadullayev Arslon</title>
+<title>BIRGA - onlayn hurmat va hamjihatlik | Sadullayev Arslon</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   :root {
-    --orange: #ff7a2f;
-    --orange-dark: #e8631a;
+    --purple: #9333ea;
+    --purple-dark: #6b21a8;
+    --purple-light: #a855f7;
+    --purple-lighter: #c084fc;
+    --purple-bg: #f3e8ff;
     --dark: #1a1a2e;
     --gray: #6b7280;
     --light: #fafafa;
@@ -33,8 +36,8 @@
     top: 0; left: 0;
     width: 100%; height: 100%;
     background-image: 
-      linear-gradient(rgba(255,122,47,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,122,47,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(147,51,234,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(147,51,234,0.05) 1px, transparent 1px);
     background-size: 40px 40px;
     z-index: -2;
     pointer-events: none;
@@ -45,8 +48,8 @@
     position: fixed;
     top: -50%; left: -50%;
     width: 200%; height: 200%;
-    background: radial-gradient(circle at 20% 30%, rgba(255,122,47,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255,122,47,0.06) 0%, transparent 40%);
+    background: radial-gradient(circle at 20% 30%, rgba(147,51,234,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168,85,247,0.06) 0%, transparent 40%);
     z-index: -1;
     pointer-events: none;
     animation: bgMove 20s ease-in-out infinite;
@@ -68,7 +71,7 @@
     padding: 12px 30px;
     border-radius: 50px;
     border: 1px solid var(--border);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 40px rgba(147,51,234,0.1);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -81,18 +84,33 @@
     to { opacity: 1; transform: translate(-50%, 0); }
   }
   
+  /* Kelajak Logosi */
+  .kelajak-logo-container {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    border-right: 2px solid var(--border);
+  }
+  
+  .kelajak-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  
   .logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-weight: 800;
-    font-size: 1.1rem;
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: -1px;
   }
   
   .logo-icon {
     width: 35px;
     height: 35px;
-    background: var(--orange);
+    background: var(--purple);
     border-radius: 8px;
     animation: rotate 8s linear infinite;
   }
@@ -102,7 +120,8 @@
     to { transform: rotate(360deg); }
   }
   
-  .logo span { color: var(--orange); }
+  .logo .bir { color: var(--dark); }
+  .logo .ga { color: var(--purple); }
   
   nav ul {
     display: flex;
@@ -118,7 +137,7 @@
     transition: color 0.3s;
   }
   
-  nav a:hover { color: var(--orange); }
+  nav a:hover { color: var(--purple); }
   
   /* 🏠 HERO SECTION */
   .hero {
@@ -160,8 +179,8 @@
     border-radius: 30px;
     padding: 20px;
     box-shadow: 
-      0 30px 60px rgba(255,122,47,0.2),
-      0 0 0 1px rgba(255,122,47,0.1);
+      0 30px 60px rgba(147,51,234,0.2),
+      0 0 0 1px rgba(147,51,234,0.1);
     transform: translateZ(0);
   }
   
@@ -170,7 +189,7 @@
     position: absolute;
     inset: -3px;
     border-radius: 32px;
-    background: linear-gradient(135deg, var(--orange), #ffb88c, var(--orange));
+    background: linear-gradient(135deg, var(--purple), var(--purple-light), var(--purple));
     z-index: -1;
     opacity: 0.6;
     animation: borderGlow 3s ease-in-out infinite;
@@ -187,7 +206,7 @@
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, #ff7a2f 0%, #ff9a5c 50%, #ffb88c 100%);
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
   }
   
   .photo-inner img {
@@ -204,12 +223,12 @@
     background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.3));
   }
   
-  /* ✨ Sparkle */
+  /*  Sparkle */
   .sparkle {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: var(--orange);
+    background: var(--purple);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     animation: sparkle 2s ease-in-out infinite;
   }
@@ -243,7 +262,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--orange);
+    background: var(--purple);
     animation: pulse 2s infinite;
   }
   
@@ -270,14 +289,14 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,122,47,0.1);
-    color: var(--orange);
+    background: rgba(147,51,234,0.1);
+    color: var(--purple);
     padding: 10px 22px;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 25px;
-    border: 1px solid rgba(255,122,47,0.2);
+    border: 1px solid rgba(147,51,234,0.2);
     animation: slideInLeft 0.8s ease;
   }
   
@@ -290,50 +309,63 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--orange);
+    background: var(--purple);
     animation: pulse 2s infinite;
   }
   
-  h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+  /* 🎨 HERO SARLAVHA */
+  .hero-title {
+    font-size: clamp(4rem, 8vw, 7rem);
     font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 15px;
+    letter-spacing: -3px;
     animation: slideInLeft 1s ease;
   }
   
-  h1 .orange {
-    color: var(--orange);
+  .hero-title .bir {
+    color: var(--dark);
+  }
+  
+  .hero-title .ga {
+    color: var(--purple);
     position: relative;
     display: inline-block;
   }
   
-  h1 .orange::after {
+  .hero-title .ga::after {
     content: '';
     position: absolute;
     bottom: 5px;
     left: 0;
     width: 100%;
-    height: 12px;
-    background: rgba(255,122,47,0.2);
+    height: 10px;
+    background: rgba(147,51,234,0.2);
     z-index: -1;
     animation: underline 2s ease-in-out infinite;
   }
   
   @keyframes underline {
     0%, 100% { transform: scaleX(1); }
-    50% { transform: scaleX(0.8); }
+    50% { transform: scaleX(0.85); }
   }
   
-  .subtitle {
-    font-size: 1.2rem;
-    color: var(--gray);
-    margin-bottom: 35px;
+  .hero-subtitle {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    color: var(--purple);
+    font-weight: 700;
+    margin-bottom: 25px;
     animation: slideInLeft 1.2s ease;
   }
   
-  .subtitle strong {
+  .hero-description {
+    font-size: 1.15rem;
+    color: var(--gray);
+    margin-bottom: 35px;
+    animation: slideInLeft 1.4s ease;
+  }
+  
+  .hero-description strong {
     color: var(--dark);
   }
   
@@ -341,7 +373,7 @@
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    animation: slideInLeft 1.4s ease;
+    animation: slideInLeft 1.6s ease;
   }
   
   .btn {
@@ -359,14 +391,14 @@
   }
   
   .btn-primary {
-    background: var(--orange);
+    background: var(--purple);
     color: white;
-    box-shadow: 0 10px 30px rgba(255,122,47,0.4);
+    box-shadow: 0 10px 30px rgba(147,51,234,0.4);
   }
   
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255,122,47,0.5);
+    box-shadow: 0 15px 40px rgba(147,51,234,0.5);
   }
   
   .btn-secondary {
@@ -376,18 +408,18 @@
   }
   
   .btn-secondary:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+    border-color: var(--purple);
+    color: var(--purple);
     transform: translateY(-3px);
   }
   
-  /*  STATS */
+  /* 📊 STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 50px;
-    animation: slideInLeft 1.6s ease;
+    animation: slideInLeft 1.8s ease;
   }
   
   .stat-card {
@@ -400,14 +432,14 @@
   
   .stat-card:hover {
     transform: translateY(-5px);
-    border-color: var(--orange);
-    box-shadow: 0 15px 40px rgba(255,122,47,0.15);
+    border-color: var(--purple);
+    box-shadow: 0 15px 40px rgba(147,51,234,0.15);
   }
   
   .stat-number {
     font-size: 2.5rem;
     font-weight: 900;
-    color: var(--orange);
+    color: var(--purple);
     line-height: 1;
   }
   
@@ -417,7 +449,7 @@
     margin-top: 8px;
   }
   
-  /*  SECTIONS */
+  /* 🎯 SECTIONS */
   section {
     padding: 100px 8%;
     position: relative;
@@ -430,14 +462,14 @@
   
   .section-tag {
     display: inline-block;
-    background: rgba(255,122,47,0.1);
-    color: var(--orange);
+    background: rgba(147,51,234,0.1);
+    color: var(--purple);
     padding: 8px 20px;
     border-radius: 50px;
     font-weight: 700;
     font-size: 0.9rem;
     margin-bottom: 15px;
-    border: 1px solid rgba(255,122,47,0.2);
+    border: 1px solid rgba(147,51,234,0.2);
   }
   
   h2 {
@@ -448,7 +480,7 @@
     margin-bottom: 15px;
   }
   
-  h2 .orange { color: var(--orange); }
+  h2 .purple { color: var(--purple); }
   
   .section-subtitle {
     font-size: 1.15rem;
@@ -481,7 +513,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: var(--orange);
+    background: var(--purple);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s;
@@ -489,8 +521,8 @@
   
   .problem-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(255,122,47,0.15);
-    border-color: var(--orange);
+    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
+    border-color: var(--purple);
   }
   
   .problem-card:hover::before {
@@ -539,7 +571,7 @@
   
   .step-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(255,122,47,0.15);
+    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
   }
   
   .step-number {
@@ -548,7 +580,7 @@
     left: 30px;
     width: 50px;
     height: 50px;
-    background: var(--orange);
+    background: var(--purple);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -556,7 +588,7 @@
     justify-content: center;
     font-weight: 900;
     font-size: 1.3rem;
-    box-shadow: 0 10px 30px rgba(255,122,47,0.4);
+    box-shadow: 0 10px 30px rgba(147,51,234,0.4);
   }
   
   .step-icon {
@@ -589,7 +621,7 @@
     top: 0;
     bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, var(--orange), #ffb88c);
+    background: linear-gradient(to bottom, var(--purple), var(--purple-light));
     border-radius: 3px;
   }
   
@@ -615,8 +647,8 @@
     height: 35px;
     border-radius: 50%;
     background: white;
-    border: 4px solid var(--orange);
-    box-shadow: 0 0 0 8px rgba(255,122,47,0.1);
+    border: 4px solid var(--purple);
+    box-shadow: 0 0 0 8px rgba(147,51,234,0.1);
   }
   
   .timeline-content {
@@ -628,13 +660,13 @@
   }
   
   .timeline-content:hover {
-    border-color: var(--orange);
-    box-shadow: 0 15px 40px rgba(255,122,47,0.15);
+    border-color: var(--purple);
+    box-shadow: 0 15px 40px rgba(147,51,234,0.15);
   }
   
   .timeline-badge {
     display: inline-block;
-    background: var(--orange);
+    background: var(--purple);
     color: white;
     padding: 6px 16px;
     border-radius: 50px;
@@ -665,9 +697,9 @@
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: rgba(255,122,47,0.05);
+    background: rgba(147,51,234,0.05);
     border-radius: 12px;
-    border-left: 3px solid var(--orange);
+    border-left: 3px solid var(--purple);
   }
   
   .timeline-item-inner .icon {
@@ -698,14 +730,14 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: var(--orange);
+    background: var(--purple);
     transform: scaleX(0);
     transition: transform 0.4s;
   }
   
   .role-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(255,122,47,0.15);
+    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
   }
   
   .role-card:hover::after {
@@ -715,7 +747,7 @@
   .role-icon {
     width: 60px;
     height: 60px;
-    background: rgba(255,122,47,0.1);
+    background: rgba(147,51,234,0.1);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -737,7 +769,7 @@
   
   /* 💬 QUOTE */
   .quote-section {
-    background: linear-gradient(135deg, var(--orange) 0%, #ff9a5c 100%);
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
     border-radius: 30px;
     padding: 60px;
     margin: 60px 8%;
@@ -772,7 +804,7 @@
     z-index: 2;
   }
   
-  /* 🎯 CTA */
+  /*  CTA */
   .cta-section {
     text-align: center;
     padding: 100px 8%;
@@ -799,9 +831,9 @@
   }
   
   .motto-item:hover {
-    border-color: var(--orange);
+    border-color: var(--purple);
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255,122,47,0.2);
+    box-shadow: 0 15px 40px rgba(147,51,234,0.2);
   }
   
   /*  FOOTER */
@@ -818,7 +850,8 @@
     margin-bottom: 15px;
   }
   
-  .footer-logo .orange { color: var(--orange); }
+  .footer-logo .bir { color: white; }
+  .footer-logo .ga { color: var(--purple-light); }
   
   footer p {
     color: rgba(255,255,255,0.6);
@@ -833,7 +866,7 @@
     color: rgba(255,255,255,0.4);
   }
   
-  /*  RESPONSIVE */
+  /* 📱 RESPONSIVE */
   @media (max-width: 900px) {
     .hero {
       flex-direction: column;
@@ -847,8 +880,16 @@
     }
     
     nav {
-      padding: 10px 20px;
-      gap: 15px;
+      padding: 10px 15px;
+      gap: 10px;
+    }
+    
+    .kelajak-logo-container {
+      padding-right: 15px;
+    }
+    
+    .kelajak-logo {
+      height: 32px;
     }
     
     nav ul { gap: 15px; }
@@ -881,10 +922,15 @@
 
 <!-- 🧭 NAVBAR -->
 <nav>
+  <div class="kelajak-logo-container">
+    <img src="kelajak-logo.png" alt="Kelajak Markazlari" class="kelajak-logo">
+  </div>
+  
   <div class="logo">
     <div class="logo-icon"></div>
-    BIRGA <span style="font-size: 0.7em; color: var(--gray); margin-left: 5px;">- onlayn hurmat</span>
+    <span class="bir">BIR</span><span class="ga">GA</span>
   </div>
+  
   <ul>
     <li><a href="#about">Haqida</a></li>
     <li><a href="#problems">Muammolar</a></li>
@@ -894,27 +940,25 @@
   </ul>
 </nav>
 
-<!--  HERO -->
+<!-- 🏠 HERO -->
 <section class="hero" id="about">
   <div class="hero-left">
     <div class="photo-card" id="photoCard">
       <div class="photo-frame">
         <div class="photo-inner">
-          <!-- RASMINGIZNI SHU YERGA QO'YING -->
           <img src="your-photo.jpg" alt="Sadullayev Arslon" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:8rem;color:white;&quot;>👤</div>';">
         </div>
       </div>
       <div class="sparkle sparkle-1"></div>
       <div class="sparkle sparkle-2"></div>
       
-      <!-- FLOATING BADGES -->
       <div class="badge badge-1">
         <div class="badge-dot"></div>
-        🎓 8-"A" sinf
+         8-"A" sinf
       </div>
       <div class="badge badge-2">
         <div class="badge-dot"></div>
-         2-maktab
+        🏫 2-maktab
       </div>
       <div class="badge badge-3">
         <div class="badge-dot"></div>
@@ -929,16 +973,20 @@
       Oldinga qo'ygan maqsadingga intil
     </div>
     
-    <h1>BIRGA <span class="orange">- onlayn hurmat<br>va hamjihatlik</span></h1>
+    <h1 class="hero-title">
+      <span class="bir">BIR</span><span class="ga">GA</span>
+    </h1>
     
-    <p class="subtitle">
+    <p class="hero-subtitle">- onlayn hurmat va hamjihatlik</p>
+    
+    <p class="hero-description">
       <strong>Ijtimoiy Tashabbus Koordinatori nomzodi</strong><br>
-      <strong style="color: var(--orange); font-size: 1.3rem;">Sadullayev Arslon</strong><br><br>
+      <strong style="color: var(--purple); font-size: 1.2rem;">Sadullayev Arslon</strong><br><br>
       O'quvchilar g'oyasi + jamoaviy harakat + foydali texnologiya
     </p>
     
     <div class="hero-buttons">
-      <a href="#solution" class="btn btn-primary"> Loyihani ko'rish</a>
+      <a href="#solution" class="btn btn-primary">🚀 Loyihani ko'rish</a>
       <a href="#timeline" class="btn btn-secondary">📅 Ish rejam</a>
     </div>
     
@@ -959,11 +1007,11 @@
   </div>
 </section>
 
-<!-- 🚩 PROBLEMS -->
+<!--  PROBLEMS -->
 <section id="problems">
   <div class="section-header fade-in">
     <div class="section-tag">🚩 Nega aynan ushbu loyiha?</div>
-    <h2>Maktabdagi <span class="orange">haqiqiy</span> muammolar</h2>
+    <h2>Maktabdagi <span class="purple">haqiqiy</span> muammolar</h2>
     <p class="section-subtitle">O'quvchilarga faqat bilim emas, xavfsiz muloqot, do'stona jamoa va o'z g'oyasini amalga oshirish imkoniyati ham kerak.</p>
   </div>
   
@@ -979,7 +1027,7 @@
       <p>Kimnidir tashqi ko'rinishi, qiziqishi yoki imkoniyatiga ko'ra chetlatish.</p>
     </div>
     <div class="problem-card fade-in">
-      <div class="problem-icon"></div>
+      <div class="problem-icon">💔</div>
       <h3>Befarqlik</h3>
       <p>Tengdoshining muammosini ko'rib, yordam berishga tashabbus qilmaslik.</p>
     </div>
@@ -992,23 +1040,23 @@
 </section>
 
 <!-- 💡 SOLUTION -->
-<section id="solution" style="background: rgba(255,122,47,0.03);">
+<section id="solution" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
     <div class="section-tag">💡 Yechim</div>
-    <h2>Bitta loyiha, <span class="orange">to'rtta</span> qadam</h2>
+    <h2>Bitta loyiha, <span class="purple">to'rtta</span> qadam</h2>
     <p class="section-subtitle">O'quvchilar fikrini eshitish, faol tengdoshlarni birlashtirish va raqamli vositalardan foydalanish orqali haqiqiy muammolarni birgalikda hal qilamiz.</p>
   </div>
   
   <div class="steps-grid">
     <div class="step-card fade-in">
       <div class="step-number">1</div>
-      <div class="step-icon">️</div>
+      <div class="step-icon">🗳️</div>
       <h3>Eshitamiz</h3>
       <p>So'rovnoma va "G'oyam bor" kanali orqali o'quvchilarning umumiy ehtiyojlari va takliflarini yig'amiz.</p>
     </div>
     <div class="step-card fade-in">
       <div class="step-number">2</div>
-      <div class="step-icon"></div>
+      <div class="step-icon">🤝</div>
       <h3>Birlashtiramiz</h3>
       <p>"BIRGA elchilari" ko'ngilli jamoasi va turli sinflardan tashabbus guruhlarini tuzamiz.</p>
     </div>
@@ -1027,11 +1075,11 @@
   </div>
 </section>
 
-<!--  ROLE -->
+<!-- 🧭 ROLE -->
 <section>
   <div class="section-header fade-in">
     <div class="section-tag">🧭 Mening vazifam</div>
-    <h2>Koordinator sifatida <span class="orange">nima qilaman?</span></h2>
+    <h2>Koordinator sifatida <span class="purple">nima qilaman?</span></h2>
     <p class="section-subtitle">Mening vazifam — hamma ishni yolg'iz bajarish emas, balki tengdoshlarimning g'oyalarini birlashtirib, amalga oshirilishiga yordam berish.</p>
   </div>
   
@@ -1060,10 +1108,10 @@
 </section>
 
 <!-- 📅 TIMELINE -->
-<section id="timeline" style="background: rgba(255,122,47,0.03);">
+<section id="timeline" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
     <div class="section-tag">🗓️ 1 yillik reja</div>
-    <h2>To'rt <span class="orange">bosqichli</span> yo'l xaritasi</h2>
+    <h2>To'rt <span class="purple">bosqichli</span> yo'l xaritasi</h2>
     <p class="section-subtitle">Sentabrdan iyungacha — har bir chorakda aniq maqsad va natija.</p>
   </div>
   
@@ -1089,9 +1137,9 @@
         <h3>Do'stlik ko'prigi va amaliy yordam</h3>
         <p>O'quvchilar orasidagi hamjihatlikni kundalik hayotda mustahkamlaymiz.</p>
         <div class="timeline-items">
-          <div class="timeline-item-inner"><span class="icon"></span> "Do'stlik ko'prigi" dasturi</div>
-          <div class="timeline-item-inner"><span class="icon"></span> "Bir yaxshi ish" tashabbusi</div>
-          <div class="timeline-item-inner"><span class="icon">👨‍👩‍👧</span> Ota-onalar bilan raqamli muloqot</div>
+          <div class="timeline-item-inner"><span class="icon">🫶</span> "Do'stlik ko'prigi" dasturi</div>
+          <div class="timeline-item-inner"><span class="icon">💙</span> "Bir yaxshi ish" tashabbusi</div>
+          <div class="timeline-item-inner"><span class="icon">👨‍‍👧</span> Ota-onalar bilan raqamli muloqot</div>
         </div>
       </div>
     </div>
@@ -1113,7 +1161,7 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <div class="timeline-badge"> 4-bosqich • May–Iyun</div>
+        <div class="timeline-badge">🔵 4-bosqich • May–Iyun</div>
         <h3>Natija, festival va davomiylik</h3>
         <p>Yil yakunida amalga oshgan ishlarni ko'rsatamiz, o'quvchilarga so'z beramiz.</p>
         <div class="timeline-items">
@@ -1137,33 +1185,38 @@
 <section class="cta-section" id="contact">
   <div class="section-header fade-in">
     <div class="section-tag">🌍 Birgalikda kuchliroq</div>
-    <h2>Bir bolaning g'oyasi — <span class="orange">butun maktab</span> uchun foyda!</h2>
+    <h2>Bir bolaning g'oyasi — <span class="purple">butun maktab</span> uchun foyda!</h2>
   </div>
   
   <div class="motto-grid fade-in">
-    <div class="motto-item">️ Onlaynda hurmat</div>
+    <div class="motto-item">🛡️ Onlaynda hurmat</div>
     <div class="motto-item">🤝 Hayotda hamjihatlik</div>
     <div class="motto-item">💡 Har bir g'oya muhim</div>
   </div>
   
   <div style="margin-top: 50px;" class="fade-in">
-    <a href="#about" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.1rem;"> Rahmat, e'tiboringiz uchun!</a>
+    <a href="#about" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.1rem;">🙏 Rahmat, e'tiboringiz uchun!</a>
   </div>
 </section>
 
 <!-- 🦶 FOOTER -->
 <footer>
-  <div class="footer-logo">BIRGA <span class="orange">- onlayn hurmat va hamjihatlik</span></div>
+  <div class="footer-logo">
+    <span class="bir">BIR</span><span class="ga">GA</span> 
+    <span style="color: var(--purple-light); font-size: 0.6em; display: block; margin-top: 5px;">
+      - onlayn hurmat va hamjihatlik
+    </span>
+  </div>
   <p><strong>Sadullayev Arslon</strong></p>
   <p>🏫 Qo'shko'pir tumani, 2-sonli maktab • 8-"A" sinf</p>
   <p>🎯 Ijtimoiy Tashabbus Koordinatori nomzodi</p>
   <div class="footer-bottom">
-    © 2026 BIRGA loyihasi • Onlaynda hurmat, hayotda hamjihatlik!
+    © 2026 BIRGA loyihasi • "Kelajak" markazlari ko'magida<br>
+    Onlaynda hurmat, hayotda hamjihatlik!
   </div>
 </footer>
 
 <script>
-  // 🖱️ 3D TILT EFFECT
   const photoCard = document.getElementById('photoCard');
   
   if (photoCard && window.innerWidth > 900) {
@@ -1184,7 +1237,6 @@
     });
   }
   
-  // 🎬 SCROLL ANIMATIONS
   const observerOptions = {
     threshold: 0.15,
     rootMargin: '0px 0px -50px 0px'
@@ -1202,7 +1254,6 @@
     observer.observe(el);
   });
   
-  // 🧭 SMOOTH SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1213,7 +1264,6 @@
     });
   });
   
-  // ⌨️ KEYBOARD NAVIGATION
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') {
       window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
