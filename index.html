@@ -12,10 +12,8 @@
     --purple-dark: #6b21a8;
     --purple-light: #a855f7;
     --purple-lighter: #c084fc;
-    --purple-bg: #f3e8ff;
     --dark: #1a1a2e;
     --gray: #6b7280;
-    --light: #fafafa;
     --border: #e5e7eb;
   }
   
@@ -29,7 +27,6 @@
     line-height: 1.6;
   }
   
-  /* 🌐 GRID FON */
   body::before {
     content: '';
     position: fixed;
@@ -60,7 +57,6 @@
     50% { transform: translate(-5%, 5%); }
   }
   
-  /* 🧭 NAVBAR */
   nav {
     position: fixed;
     top: 20px;
@@ -98,12 +94,6 @@
     height: 35px;
     background: var(--purple);
     border-radius: 8px;
-    animation: rotate 8s linear infinite;
-  }
-  
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
   
   .logo .bir { color: var(--dark); }
@@ -125,7 +115,6 @@
   
   nav a:hover { color: var(--purple); }
   
-  /* 🏠 HERO SECTION */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -143,7 +132,6 @@
     perspective: 1500px;
   }
   
-  /* 🖼️ 3D RASM CARD */
   .photo-card {
     position: relative;
     width: 420px;
@@ -193,6 +181,9 @@
     overflow: hidden;
     position: relative;
     background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .photo-inner img {
@@ -202,14 +193,28 @@
     display: block;
   }
   
-  .photo-inner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.3));
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
   }
   
-  /* ✨ Sparkle */
+  .photo-placeholder .icon {
+    font-size: 8rem;
+    margin-bottom: 20px;
+  }
+  
+  .photo-placeholder .text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+  
   .sparkle {
     position: absolute;
     width: 20px;
@@ -227,7 +232,6 @@
     50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
   }
   
-  /* 🏷️ FLOATING BADGES */
   .badge {
     position: absolute;
     background: white;
@@ -299,47 +303,22 @@
     animation: pulse 2s infinite;
   }
   
-  /* 🎨 HERO SARLAVHA */
   .hero-title {
     font-size: clamp(4rem, 8vw, 7rem);
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     letter-spacing: -3px;
     animation: slideInLeft 1s ease;
   }
   
-  .hero-title .bir {
-    color: var(--dark);
-  }
-  
-  .hero-title .ga {
-    color: var(--purple);
-    position: relative;
-    display: inline-block;
-  }
-  
-  .hero-title .ga::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: rgba(147,51,234,0.2);
-    z-index: -1;
-    animation: underline 2s ease-in-out infinite;
-  }
-  
-  @keyframes underline {
-    0%, 100% { transform: scaleX(1); }
-    50% { transform: scaleX(0.85); }
-  }
+  .hero-title .bir { color: var(--dark); }
+  .hero-title .ga { color: var(--purple); }
   
   .hero-subtitle {
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     color: var(--purple);
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 25px;
     animation: slideInLeft 1.2s ease;
   }
@@ -399,7 +378,6 @@
     transform: translateY(-3px);
   }
   
-  /* 📊 STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -435,7 +413,6 @@
     margin-top: 8px;
   }
   
-  /* 🎯 SECTIONS */
   section {
     padding: 100px 8%;
     position: relative;
@@ -475,14 +452,13 @@
     margin: 0 auto;
   }
   
-  /* 🚩 PROBLEMS */
-  .problems-grid {
+  .problems-grid, .steps-grid, .role-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
   }
   
-  .problem-card {
+  .problem-card, .step-card, .role-card {
     background: white;
     padding: 35px 30px;
     border-radius: 24px;
@@ -492,7 +468,7 @@
     overflow: hidden;
   }
   
-  .problem-card::before {
+  .problem-card::before, .role-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -505,59 +481,31 @@
     transition: transform 0.4s;
   }
   
-  .problem-card:hover {
+  .problem-card:hover, .step-card:hover, .role-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 50px rgba(147,51,234,0.15);
     border-color: var(--purple);
   }
   
-  .problem-card:hover::before {
+  .problem-card:hover::before, .role-card:hover::after {
     transform: scaleX(1);
   }
   
-  .problem-icon {
+  .problem-icon, .step-icon {
     font-size: 3rem;
     margin-bottom: 15px;
     display: inline-block;
-    animation: bounce 2s infinite;
   }
   
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  .problem-card h3 {
+  .problem-card h3, .step-card h3, .role-card h3 {
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 10px;
   }
   
-  .problem-card p {
+  .problem-card p, .step-card p, .role-card p {
     color: var(--gray);
     font-size: 0.95rem;
-  }
-  
-  /* 🛠️ STEPS */
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    position: relative;
-  }
-  
-  .step-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    position: relative;
-    transition: all 0.4s;
-  }
-  
-  .step-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
   }
   
   .step-number {
@@ -577,23 +525,18 @@
     box-shadow: 0 10px 30px rgba(147,51,234,0.4);
   }
   
-  .step-icon {
-    font-size: 3rem;
-    margin: 15px 0;
+  .role-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(147,51,234,0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
   
-  .step-card h3 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  
-  .step-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-  }
-  
-  /* 📅 TIMELINE */
   .timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -692,68 +635,6 @@
     font-size: 1.3rem;
   }
   
-  /*  ROLE */
-  .role-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-  
-  .role-card {
-    background: white;
-    padding: 35px 30px;
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    transition: all 0.4s;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .role-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--purple);
-    transform: scaleX(0);
-    transition: transform 0.4s;
-  }
-  
-  .role-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(147,51,234,0.15);
-  }
-  
-  .role-card:hover::after {
-    transform: scaleX(1);
-  }
-  
-  .role-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(147,51,234,0.1);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-  
-  .role-card h3 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-  
-  .role-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-  }
-  
-  /* 💬 QUOTE */
   .quote-section {
     background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
     border-radius: 30px;
@@ -790,7 +671,6 @@
     z-index: 2;
   }
   
-  /* 🎯 CTA */
   .cta-section {
     text-align: center;
     padding: 100px 8%;
@@ -822,7 +702,6 @@
     box-shadow: 0 15px 40px rgba(147,51,234,0.2);
   }
   
-  /* 🦶 FOOTER */
   footer {
     background: var(--dark);
     color: white;
@@ -852,7 +731,6 @@
     color: rgba(255,255,255,0.4);
   }
   
-  /*  RESPONSIVE */
   @media (max-width: 900px) {
     .hero {
       flex-direction: column;
@@ -883,7 +761,6 @@
     section { padding: 60px 5%; }
   }
   
-  /* 🎬 SCROLL ANIMATIONS */
   .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -898,7 +775,6 @@
 </head>
 <body>
 
-<!-- 🧭 NAVBAR -->
 <nav>
   <div class="logo">
     <div class="logo-icon"></div>
@@ -913,13 +789,12 @@
   </ul>
 </nav>
 
-<!-- 🏠 HERO -->
 <section class="hero" id="about">
   <div class="hero-left">
     <div class="photo-card" id="photoCard">
       <div class="photo-frame">
         <div class="photo-inner">
-          <img src="your-photo.jpg" alt="Sadullayev Arslon" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:8rem;color:white;&quot;>👤</div>';">
+          <img src="your-photo.jpg" alt="Sadullayev Arslon" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;photo-placeholder&quot;><div class=&quot;icon&quot;>👤</div><div class=&quot;text&quot;>Rasm yuklanmadi</div></div>';">
         </div>
       </div>
       <div class="sparkle sparkle-1"></div>
@@ -931,11 +806,11 @@
       </div>
       <div class="badge badge-2">
         <div class="badge-dot"></div>
-         2-maktab
+        🏫 2-maktab
       </div>
       <div class="badge badge-3">
         <div class="badge-dot"></div>
-         Nomzod
+        🎯 Nomzod
       </div>
     </div>
   </div>
@@ -950,7 +825,7 @@
       <span class="bir">BIR</span><span class="ga">GA</span>
     </h1>
     
-    <p class="hero-subtitle">- onlayn hurmat va hamjihatlik</p>
+    <p class="hero-subtitle">onlayn hurmat va hamjihatlik</p>
     
     <p class="hero-description">
       <strong>Ijtimoiy Tashabbus Koordinatori nomzodi</strong><br>
@@ -980,7 +855,6 @@
   </div>
 </section>
 
-<!--  PROBLEMS -->
 <section id="problems">
   <div class="section-header fade-in">
     <div class="section-tag">🚩 Nega aynan ushbu loyiha?</div>
@@ -1005,14 +879,13 @@
       <p>Tengdoshining muammosini ko'rib, yordam berishga tashabbus qilmaslik.</p>
     </div>
     <div class="problem-card fade-in">
-      <div class="problem-icon"></div>
+      <div class="problem-icon">🧩</div>
       <h3>Yakkalanish</h3>
       <p>Yangi yoki tortinchoq o'quvchining sinf va tadbirlardan chetda qolishi.</p>
     </div>
   </div>
 </section>
 
-<!-- 💡 SOLUTION -->
 <section id="solution" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
     <div class="section-tag">💡 Yechim</div>
@@ -1048,10 +921,9 @@
   </div>
 </section>
 
-<!-- 🧭 ROLE -->
 <section>
   <div class="section-header fade-in">
-    <div class="section-tag"> Mening vazifam</div>
+    <div class="section-tag">🧭 Mening vazifam</div>
     <h2>Koordinator sifatida <span class="purple">nima qilaman?</span></h2>
     <p class="section-subtitle">Mening vazifam — hamma ishni yolg'iz bajarish emas, balki tengdoshlarimning g'oyalarini birlashtirib, amalga oshirilishiga yordam berish.</p>
   </div>
@@ -1080,10 +952,9 @@
   </div>
 </section>
 
-<!-- 📅 TIMELINE -->
 <section id="timeline" style="background: rgba(147,51,234,0.03);">
   <div class="section-header fade-in">
-    <div class="section-tag">️ 1 yillik reja</div>
+    <div class="section-tag">🗓️ 1 yillik reja</div>
     <h2>To'rt <span class="purple">bosqichli</span> yo'l xaritasi</h2>
     <p class="section-subtitle">Sentabrdan iyungacha — har bir chorakda aniq maqsad va natija.</p>
   </div>
@@ -1112,7 +983,7 @@
         <div class="timeline-items">
           <div class="timeline-item-inner"><span class="icon">🫶</span> "Do'stlik ko'prigi" dasturi</div>
           <div class="timeline-item-inner"><span class="icon">💙</span> "Bir yaxshi ish" tashabbusi</div>
-          <div class="timeline-item-inner"><span class="icon">👨‍👩‍👧</span> Ota-onalar bilan raqamli muloqot</div>
+          <div class="timeline-item-inner"><span class="icon">👨‍👩‍</span> Ota-onalar bilan raqamli muloqot</div>
         </div>
       </div>
     </div>
@@ -1121,7 +992,7 @@
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <div class="timeline-badge">🟠 3-bosqich • Mart–Aprel</div>
-        <h3>"BIRGA - onlayn hurmat va hamjihatlik" ijtimoiy hackathoni</h3>
+        <h3>"BIRGA" ijtimoiy hackathoni</h3>
         <p>Maktab hayotidagi ijtimoiy muammoga yechim yaratish — asosiy vazifa kod yozish emas.</p>
         <div class="timeline-items">
           <div class="timeline-item-inner"><span class="icon">💭</span> "Muammo + g'oya" tanlovi</div>
@@ -1139,22 +1010,20 @@
         <p>Yil yakunida amalga oshgan ishlarni ko'rsatamiz, o'quvchilarga so'z beramiz.</p>
         <div class="timeline-items">
           <div class="timeline-item-inner"><span class="icon"></span> "BIRGA" ijtimoiy festival</div>
-          <div class="timeline-item-inner"><span class="icon">🏅</span> Tashabbuskorlarni e'tirof etish</div>
-          <div class="timeline-item-inner"><span class="icon"></span> Natijani qayta o'lchash</div>
-          <div class="timeline-item-inner"><span class="icon">🌱</span> Keyingi yilga ko'prik</div>
+          <div class="timeline-item-inner"><span class="icon"></span> Tashabbuskorlarni e'tirof etish</div>
+          <div class="timeline-item-inner"><span class="icon">📋</span> Natijani qayta o'lchash</div>
+          <div class="timeline-item-inner"><span class="icon"></span> Keyingi yilga ko'prik</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 💬 QUOTE -->
 <div class="quote-section fade-in">
   <p class="quote-text">"Men bir o'zim hammani o'zgartira olmayman. Lekin har bir o'quvchining g'oyasini eshitib, ularni bir jamoaga birlashtira olaman. Raqamli vositalar bizga yordam beradi; eng katta kuchimiz esa — o'zaro hurmat va hamjihatlik."</p>
   <p class="quote-author">— Sadullayev Arslon, Ijtimoiy Tashabbus Koordinatori nomzodi</p>
 </div>
 
-<!--  CTA -->
 <section class="cta-section" id="contact">
   <div class="section-header fade-in">
     <div class="section-tag"> Birgalikda kuchliroq</div>
@@ -1172,12 +1041,11 @@
   </div>
 </section>
 
-<!-- 🦶 FOOTER -->
 <footer>
   <div class="footer-logo">
     <span class="bir">BIR</span><span class="ga">GA</span> 
     <span style="color: var(--purple-light); font-size: 0.6em; display: block; margin-top: 5px;">
-      - onlayn hurmat va hamjihatlik
+      onlayn hurmat va hamjihatlik
     </span>
   </div>
   <p><strong>Sadullayev Arslon</strong></p>
